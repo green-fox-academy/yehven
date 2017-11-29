@@ -1,0 +1,102 @@
+*{
+    margin: 0px;
+    padding: 0px;
+    border: 0px;
+}
+
+
+
+.largebox{
+    background-color: green;
+    box-sizing: border-box;
+    width: 100%;
+    height: 1100px;
+    margin: 20px auto;
+    
+   
+}
+
+.upperbox{
+    background-color: yellow;
+    box-sizing: border-box;
+    width: 100%;
+    height: 60px;
+    border: 10px solid red;
+    position: relative;
+    top: 10px;
+    display: inline-block;
+    
+}
+
+
+.boxleft {
+    background-color: yellow;
+    box-sizing: border-box;
+    width: 50%;
+    height: 800px;
+    border: 10px solid red;
+    position: relative;
+    top: 20px;
+    float: left;
+    
+}
+
+.boxright {
+    background-color: yellow;
+    box-sizing: border-box;
+    width: 50%;
+    height: 800px;
+    border: 10px solid red;
+    position: relative;
+    top: 20px;
+    float: left;
+    
+}
+
+.buttombox{
+    background-color: yellow;
+    box-sizing: border-box;
+    width: 100%;
+    height: 250px;
+    border: 10px solid red;
+    position: relative;
+    top: 40px;
+    display: inline-block;
+    
+}
+
+.leftcolumn {
+    background-color: yellow;
+    box-sizing: border-box;
+    width: 50%;
+    height: 80px;
+    border: 2px solid black;
+    position: relative;
+    top: 250px;
+    float: left;
+    
+}
+
+.righttcolumn {
+    background-color: yellow;
+    box-sizing: border-box;
+    width: 50%;
+    height: 80px;
+    border: 2px solid black;
+    position: relative;
+    top: 250px;
+    float: left;
+
+}
+
+.buttomcolumn{
+    background-color: yellow;
+    box-sizing: border-box;
+    width: 100%;
+    height: 300px;
+    border: 2px solid black;
+    position: relative;
+    top: 330px;
+    display: inline-block;
+}
+

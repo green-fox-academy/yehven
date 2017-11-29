@@ -1,0 +1,19 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    padding: 3rem;
+    background: green;
+    height: 800px;
+    widows: 500px; 
+}
+
+.largebox {
+    background: tomato;
+    display: flex;
+    flex-wrap: wrap;
+
+}

@@ -1,0 +1,22 @@
+body{
+    width: 383px;
+    height: auto;
+    
+}
+
+h1{
+    color: #FF6347;
+}
+
+h2{
+    color: #9D46E3;
+}
+
+ol li:nth-child(1), ol li:nth-child(2), ol li:nth-child(3){
+    color: #FF19FF;
+    text-decoration: underline #FF19FF;
+}
+
+ol li:nth-child(4){
+    text-decoration: underline grey;
+}

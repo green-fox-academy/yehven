@@ -1,0 +1,33 @@
+body{
+    width: 415px;
+    border: 15px solid #4285F4;
+}
+
+
+div{
+    height: auto;
+    width: auto;
+    font-size: 36px;
+    text-align: center;
+    padding: 50px;
+    color: white;
+    
+}
+
+.North{
+    background: #E67676;
+    
+}
+
+.East{
+    background: #F2F062;
+
+}
+
+.South{
+    background: #A9E6E6;
+}
+
+.West{
+    background: #7692E4;
+}

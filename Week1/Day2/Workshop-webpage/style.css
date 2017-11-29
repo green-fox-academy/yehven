@@ -1,0 +1,41 @@
+body{
+    background-image: url("topography1.png");
+        
+}
+
+h1{
+    font-size: 45px;
+    
+}
+
+.pink{
+    color: #ff0099;
+    font-size: 25px;
+}
+
+.kotojelek{
+    text-align: center;
+    padding: 50px;
+}
+
+nav{
+    display: block;
+    color: pink;
+    text-align: right;
+    text-decoration: none;
+    background-color: grey;
+    padding: 20px;  
+    width: 100%;
+
+    }
+.maincontent{
+   padding: 60px 10% 0 10%;
+}
+p{
+    font-family: 'Roboto Mono', monospace;
+    }
+
+h2{
+    text-align: center;
+    let
+}

@@ -1,0 +1,22 @@
+body{
+    font-size: 36px;
+    height: 367px;
+    width: 471px;
+    display: block;
+        
+
+    }
+
+div{
+    display: block;
+    width: 367px;
+    height: 157px;
+    background-color: rgb(14, 145, 161);
+    padding-top: 15px;
+    padding-left: 15px;
+    margin-bottom: 20px;
+    border: 5px solid rgb(125, 206, 148);
+    color: #0C786F;
+    
+    
+    }

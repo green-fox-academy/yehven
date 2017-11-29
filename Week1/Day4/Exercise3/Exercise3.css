@@ -1,0 +1,32 @@
+body{
+    width: 383px;
+    height: 586px;
+    
+}
+
+
+div{
+    height: auto;
+    width: auto;
+    font-size: 36px;
+    text-align: center;
+    padding: 50px;
+    color: white;
+    border: 15px solid #4285F4;
+    margin-bottom: 5px;
+    
+}
+
+.North{
+    background: #E67676;
+    
+}
+
+
+.South{
+    background: #A9E6E6;
+}
+
+.North p{
+    l
+}
