@@ -10,7 +10,8 @@ public class exercise02 {
 
         String url = "https//www.reddit.com/r/nevertellmethebots";
         url = url.replace("bots","odds");
-        url.add(4,":");
+        switch (url = url.replace("https", "https:")) {
+        }
         System.out.println(url);
     }
 }
