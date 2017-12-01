@@ -21,7 +21,7 @@ public class exercise14 {
         map.put(1, "Never gonna");
         map.put(11, "\n");
         map.put(3, "say goodbye");
-        
+
 
         System.out.println(out);
     }

@@ -8,7 +8,7 @@ public class greeterfunction {
     }
 
     public static void greet(String input) {
-        System.out.println("Greetings dear, " + input);
+        System.out.println("Greetings dear, " + input + "!");
 
 
     }
