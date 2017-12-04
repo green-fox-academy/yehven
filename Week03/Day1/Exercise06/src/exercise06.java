@@ -15,6 +15,10 @@ public class exercise06 {
         String inputPath1 = scanner.nextLine();
         System.out.println("Please input the name of the destination file");
         String inputPath2 = scanner.nextLine();
+        copyFile (inputPath1,inputPath2);
+    }
+
+    private static void copyFile(String inputPath1, String inputPath2) {
         Path path1 = Paths.get(inputPath1);
         Path path2 = Paths.get(inputPath2);
         try {
