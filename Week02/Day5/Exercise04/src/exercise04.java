@@ -9,7 +9,7 @@ public class exercise04 {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Guess the number 1-100, you have 5 lives!");
 
-        for (int lives = 4; lives >= 0 ; lives--){
+        for (int lives = 6; lives >= 0 ; lives--){
             int userguess = scanner.nextInt();
             if (userguess < g){
                 System.out.println("The stored number is higher, you have " + lives + " lives left.");
