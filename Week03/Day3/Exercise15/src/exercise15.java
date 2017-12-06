@@ -1,25 +1,24 @@
-// create a square drawing function that takes 2 parameters:
-// the square size, and the fill color,
-// and draws a square of that size and color to the center of the canvas.
-// create a loop that fills the canvas with rainbow colored squares.
-
 import javax.swing.*;
 
 import java.awt.*;
 
 import static javax.swing.JFrame.EXIT_ON_CLOSE;
 
-public class exercise10 {
+public class exercise15 {
 
     public static void mainDraw(Graphics graphics){
-        for (int i = 300; i > 0; i -=10) {
-            drawSquares(graphics, i, new Color((int)(Math.random() * 0x1000000)));
-        }
-    }
+        for (int i = 0; i <WIDTH; i += 20){
+            graphics.setColor(new Color(196, 125, 246));
+            graphics.drawLine(i,0,WIDTH,i);
 
-    public static void drawSquares(Graphics graphics, int i, Color color) {
-        graphics.setColor(color);
-        graphics.fillRect((WIDTH/2)-(i/2),(HEIGHT/2)-(i/2),i,i);
+        }
+        for (int j = 0; j < HEIGHT; j +=20){
+            graphics.setColor(new Color(105,219,111));
+            graphics.drawLine(0,j,j,HEIGHT);
+        }
+
+
+
     }
 
     //    Don't touch the code below
