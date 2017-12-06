@@ -25,7 +25,7 @@ public class exercise07 {
             }
             System.out.println(decrypted);
         } catch (Exception e) {
-            System.out.println("Decryption does not work!");
+            System.out.println("Decryption failed!");
         }
     }
 }
