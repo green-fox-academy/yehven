@@ -18,7 +18,6 @@ public class exercise16 {
         for (int i = 0; i <WIDTH/2; i += 20){
             graphics.setColor(new Color(196, 125, 246));
             graphics.drawLine(i,0,WIDTH/2,i);
-
         }
         for (int j = 0; j < HEIGHT/2; j +=20){
             graphics.setColor(new Color(105,219,111));
@@ -54,12 +53,6 @@ public class exercise16 {
             graphics.setColor(new Color(105,219,111));
             graphics.drawLine(WIDTH/2,HEIGHT/2+j,WIDTH/2+j,HEIGHT);
         }
-
-
-
-
-
-
 
     }
 

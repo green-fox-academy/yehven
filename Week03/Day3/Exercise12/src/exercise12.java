@@ -10,7 +10,7 @@ import static javax.swing.JFrame.EXIT_ON_CLOSE;
 public class exercise12 {
 
     public static void mainDraw(Graphics graphics){
-        for (int i = 10; i < 100; i +=i*0.5) {
+        for (int i = 10; i < 300; i +=i*0.5) {
             drawSquares(graphics, i, new Color(171,58,236));
         }
     }
