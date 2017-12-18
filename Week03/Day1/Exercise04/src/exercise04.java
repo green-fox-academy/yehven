@@ -12,7 +12,7 @@ import java.nio.file.Files;
 public class exercise04 {
     public static void main(String[] args) {
         List<String> content = new ArrayList();
-        content.add("Visi Ádám");
+        content.add("komisz hobbitok");
         try { // Required by Files.write(filePath, content)
             // Creates a new file if not exists and overwrites it's content
             // The elements of the content lists will become the lines of the file
