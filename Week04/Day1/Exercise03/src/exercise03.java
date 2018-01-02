@@ -3,6 +3,7 @@
 // eg: [2, 4], [4, 3], [3, 5] ...
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class exercise03 {
@@ -21,7 +22,6 @@ public class exercise03 {
                 }
             }
         }
-
         System.out.println(dominoes);
     }
 

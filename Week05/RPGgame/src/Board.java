@@ -7,10 +7,14 @@ public class Board extends JComponent implements KeyListener {
 
     int testBoxX;
     int testBoxY;
+    GameTable tempTable;
+    Character char1;
+    static Hero hero1;
 
     public Board() {
         testBoxX = 0;
         testBoxY = 0;
+        hero1 = new Hero(0,0);
 
         // set the size of your draw board
         setPreferredSize(new Dimension(720, 720));
@@ -20,18 +24,14 @@ public class Board extends JComponent implements KeyListener {
     @Override
     public void paint(Graphics graphics) {
         super.paint(graphics);
+        this.tempTable.makeTable(graphics);
+        this.char1.draw(graphics);
         //graphics.fillRect(testBoxX, testBoxY, , 100);
         // here you have a 720x720 canvas
         // you can create and draw an image using the class below e.g.
-        for (int i = 0; i < 10; i++) {
-            for (int j = 0; j < 10; j++) {
-                PositionedImage image = new PositionedImage("C:\\Users\\Adam\\Desktop\\floor.png", i*72, j*72);
-                image.draw(graphics);
-            }
-
         }
 
-    }
+
 
     public static void main(String[] args) {
         // Here is how you set up a new window and adding our board to it
@@ -47,6 +47,21 @@ public class Board extends JComponent implements KeyListener {
         frame.addKeyListener(board);
         // Notice (at the top) that we can only do this
         // because this Board class (the type of the board object) is also a KeyListener
+        int [][] tableX = {
+                {0, 0, 0, 1, 0, 1, 0, 0, 0, 0},
+                {0, 0, 0, 1, 0, 1, 0, 1, 1, 0},
+                {0, 1, 1, 1, 0, 1, 0, 1, 1, 0},
+                {0, 0, 0, 0, 0, 1, 0, 0, 0, 0},
+                {1, 1, 1, 1, 0, 1, 1, 1, 1, 0},
+                {0, 1, 0, 1, 0, 0, 0, 0, 1, 0},
+                {0, 0, 0, 0, 0, 1, 1, 0, 1, 0},
+                {0, 1, 1, 1, 0, 0, 0, 0, 1, 0},
+                {0, 0, 0, 1, 0, 1, 1, 0, 1, 0},
+                {0, 1, 0, 1, 0, 1, 0, 0, 0, 0}
+        };
+        GameTable tabledraw = new GameTable(tableX, 720);
+        board.tempTable = tabledraw;
+        board.char1 = hero1;
     }
 
     // To be a KeyListener the class needs to have these 3 methods in it
@@ -65,9 +80,13 @@ public class Board extends JComponent implements KeyListener {
     public void keyReleased(KeyEvent e) {
         // When the up or down keys hit, we change the position of our box
         if (e.getKeyCode() == KeyEvent.VK_UP) {
-            testBoxY -= 100;
+            hero1.moving(0,-72);
         } else if(e.getKeyCode() == KeyEvent.VK_DOWN) {
-            testBoxY += 100;
+            hero1.moving(0, 72);
+        } else if(e.getKeyCode() == KeyEvent.VK_RIGHT) {
+        hero1.moving(72, 0);
+        } else if(e.getKeyCode() == KeyEvent.VK_LEFT) {
+            hero1.moving(-72, 0);
         }
         // and redraw to have a new picture with the new coordinates
         repaint();
