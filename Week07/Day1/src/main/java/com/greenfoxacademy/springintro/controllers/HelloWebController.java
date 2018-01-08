@@ -16,7 +16,8 @@ public class HelloWebController {
           "Guten Tag", "Gia'sou", "Aloha", "Shalom", "Namaste", "Namaste", "Jó napot", "Halló", "Helló", "Góðan daginn", "Halo", "Aksunai", "Qanuipit", "Dia dhuit",
           "Salve", "Ciao", "Kon-nichiwa", "An-nyong Ha-se-yo", "Salvëte", "Ni hao", "Dzien' dobry", "Olá", "Bunã ziua", "Zdravstvuyte", "Hola", "Jambo", "Hujambo", "Hej",
           "Sa-wat-dee", "Merhaba", "Selam", "Vitayu", "Xin chào", "Hylo", "Sut Mae", "Sholem Aleychem", "Sawubona"};
-    @GetMapping("/hello")
+  String [] colors = {"blue", "red", "green", "yellow", "pink", "grey", "brown", "orange", "plum", "purple", "lime", "aqua", "cornsilk", "peru", "lightslategrey", "beige"};
+  @GetMapping("/hello")
     public String helloWebPage (Model model,
                                 @RequestParam(value = "name", required = false) String name){
       if (name == null) {
@@ -25,6 +26,8 @@ public class HelloWebController {
       model.addAttribute("name", name);
       model.addAttribute("counter", counter.incrementAndGet());
       model.addAttribute("hello", hellos[new Random().nextInt(hellos.length)]);
+      model.addAttribute("color", colors[new Random().nextInt(colors.length)]);
+      model.addAttribute("fontsize", (int) (Math.random()*(50-6))+6);
       return "Hello";
     }
 
