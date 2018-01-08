@@ -16,16 +16,16 @@ public class Dominoes {
 
     }
 
-    private static List<Domino> orderOfDominoes(List<Domino> dominoeOrder) {
-        for (int i = 0; i < dominoeOrder.size(); i++) {
-            for (int j = i; j < dominoeOrder.size(); j++) {
-                if (dominoeOrder.get(i).getValues()[1] == dominoeOrder.get(j).getValues()[0]) {
-                    dominoeOrder.add(i+1, dominoeOrder.get(j));
-                    dominoeOrder.remove(j+1);
+    private static List<Domino> orderOfDominoes(List<Domino> dominoOrder) {
+        for (int i = 0; i < dominoOrder.size(); i++) {
+            for (int j = i; j < dominoOrder.size(); j++) {
+                if (dominoOrder.get(i).getValues()[1] == dominoOrder.get(j).getValues()[0]) {
+                    dominoOrder.add(i+1, dominoOrder.get(j));
+                    dominoOrder.remove(j+1);
                 }
             }
         }
-        return dominoeOrder;
+        return dominoOrder;
     }
 
     static List<Domino> initializeDominoes() {

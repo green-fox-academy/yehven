@@ -18,12 +18,12 @@ public class Domino implements Comparable<Domino>{
 
     @Override
     public int compareTo(Domino domino) {
-        int compareDominoNumber0 = domino.getValues()[0];
-        int compareDominoNumber1 = domino.getValues()[1];
-        if (this.getValues()[0] != compareDominoNumber0) {
-            return this.getValues()[0] - compareDominoNumber0;
+        int compareDominoValueA = domino.getValues()[0];
+        int compareDominoValueB = domino.getValues()[1];
+        if (this.getValues()[0] != compareDominoValueA) {
+            return this.getValues()[0] - compareDominoValueA;
         } else {
-            return this.getValues()[1] - compareDominoNumber1;
+            return this.getValues()[1] - compareDominoValueB;
         }
     }
 }
