@@ -16,7 +16,7 @@ public class WebController {
 
   @RequestMapping (value = "/show")
   public String showOneAccount(Model model){
-    BankAccount showOneAccount = new BankAccount("Simba", 2000.00, "lion");
+    BankAccount showOneAccount = new BankAccount("Simba", 2000.00, "lion", true,true);
     model.addAttribute("name", showOneAccount.getName());
     model.addAttribute("balance", String.format("%.2f",showOneAccount.getBalance()));
     model.addAttribute("animalType", showOneAccount.getAnimalType());
@@ -33,11 +33,11 @@ public class WebController {
   @RequestMapping (value = "/multiaccounts")
   public String multiaccounts (Model model){
     List <BankAccount> listOfAccounts = new ArrayList<BankAccount>();
-    BankAccount account1 = new BankAccount("Simba", 2000.00, "lion");
-    BankAccount account2 = new BankAccount("Nala", 1900.00, "lion");
-    BankAccount account3 = new BankAccount("Zazu", 3000.00, "bird");
-    BankAccount account4 = new BankAccount("Timon", 1000.00, "meerkat");
-    BankAccount account5 = new BankAccount("Pumbaa", 1000.00, "warthog");
+    BankAccount account1 = new BankAccount("Simba", 2000.00, "lion", true,true);
+    BankAccount account2 = new BankAccount("Nala", 1900.00, "lion",false, true);
+    BankAccount account3 = new BankAccount("Mufasza", 800.00, "lion",false,false);
+    BankAccount account4 = new BankAccount("Timon", 1000.00, "meerkat", false, true);
+    BankAccount account5 = new BankAccount("Pumbaa", 1000.00, "warthog", false,true);
     listOfAccounts.add(account1);
     listOfAccounts.add(account2);
     listOfAccounts.add(account3);
