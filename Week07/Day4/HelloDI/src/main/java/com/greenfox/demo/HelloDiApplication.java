@@ -1,5 +1,6 @@
 package com.greenfox.demo;
 
+import com.greenfox.demo.services.MyColor;
 import com.greenfox.demo.services.Printer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -12,12 +13,15 @@ public class HelloDiApplication implements CommandLineRunner{
 	@Autowired
 	Printer printer;
 
+	@Autowired
+	MyColor myColor;
+
 	public static void main(String[] args) {
 		SpringApplication.run(HelloDiApplication.class, args);
 	}
 
   @Override
   public void run(String... args) throws Exception {
-    printer.log("Skraaaaa");
+    printer.log(myColor.printColor());
   }
 }
