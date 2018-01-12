@@ -4,8 +4,10 @@ import com.greenfoxacademy.bankofsimba.Models.BankAccount;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -13,6 +15,16 @@ import java.util.List;
 
 @Controller
 public class WebController {
+
+  static List <BankAccount> listOfAccounts = new ArrayList<>();
+
+  public WebController() {
+    listOfAccounts.add(new BankAccount("Simba", 2000.00, "lion", true,true));
+    listOfAccounts.add(new BankAccount("Nala", 1900.00, "lion",false, true));
+    listOfAccounts.add(new BankAccount("Mufasza", 1000.00, "lion",false,false));
+    listOfAccounts.add(new BankAccount("Timon", 1000.00, "meerkat", true, true));
+    listOfAccounts.add(new BankAccount("Pumbaa", 1000.00, "warthog", false,true));
+  }
 
   @RequestMapping (value = "/show")
   public String showOneAccount(Model model){
@@ -32,18 +44,20 @@ public class WebController {
 
   @RequestMapping (value = "/multiaccounts")
   public String multiaccounts (Model model){
-    List <BankAccount> listOfAccounts = new ArrayList<BankAccount>();
-    BankAccount account1 = new BankAccount("Simba", 2000.00, "lion", true,true);
-    BankAccount account2 = new BankAccount("Nala", 1900.00, "lion",false, true);
-    BankAccount account3 = new BankAccount("Mufasza", 800.00, "lion",false,false);
-    BankAccount account4 = new BankAccount("Timon", 1000.00, "meerkat", false, true);
-    BankAccount account5 = new BankAccount("Pumbaa", 1000.00, "warthog", false,true);
-    listOfAccounts.add(account1);
-    listOfAccounts.add(account2);
-    listOfAccounts.add(account3);
-    listOfAccounts.add(account4);
-    listOfAccounts.add(account5);
     model.addAttribute("accounts", listOfAccounts);
+    model.addAttribute("selectedaccount", new BankAccount());
     return "basicTemplate3";
   }
+
+  @RequestMapping(value = "/multiaccounts/raise", method = RequestMethod.POST)
+  public ModelAndView raise(Model model, @ModelAttribute BankAccount bankAccount) {
+    for (BankAccount account1 : listOfAccounts) {
+      if (account1.getName().equals(bankAccount.getName())) {
+        account1.increaseBalance();
+      }
+    }
+    model.addAttribute("listOfAccounts", listOfAccounts);
+    return new ModelAndView("redirect:/multiaccounts");
+  }
+
 }

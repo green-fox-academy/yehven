@@ -7,6 +7,9 @@ public class BankAccount {
   boolean king;
   boolean isGood;
 
+  public BankAccount() {
+  }
+
   public BankAccount(String name, double balance, String animalType, boolean king, boolean isGood) {
     this.name = name;
     this.balance = balance;
@@ -45,6 +48,14 @@ public class BankAccount {
 
   public void setBalance(double balance) {
     this.balance = balance;
+  }
+
+  public void increaseBalance (){
+    if (king) {
+      setBalance((getBalance() + 100));
+    } else {
+      setBalance((getBalance() + 10));
+    }
   }
 
   public String getAnimalType() {
