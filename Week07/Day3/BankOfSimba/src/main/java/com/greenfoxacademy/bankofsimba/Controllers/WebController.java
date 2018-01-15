@@ -3,6 +3,7 @@ package com.greenfoxacademy.bankofsimba.Controllers;
 import com.greenfoxacademy.bankofsimba.Models.BankAccount;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,6 +25,7 @@ public class WebController {
     listOfAccounts.add(new BankAccount("Mufasza", 1000.00, "lion",false,false));
     listOfAccounts.add(new BankAccount("Timon", 1000.00, "meerkat", true, true));
     listOfAccounts.add(new BankAccount("Pumbaa", 1000.00, "warthog", false,true));
+    listOfAccounts.add(new BankAccount("Pacsek", 6000.00,"kitten",true,false));
   }
 
   @RequestMapping (value = "/show")
