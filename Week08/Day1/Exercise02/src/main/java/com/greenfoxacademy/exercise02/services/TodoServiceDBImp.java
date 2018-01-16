@@ -27,8 +27,8 @@ public class TodoServiceDBImp implements TodoService{
   }
 
   @Override
-  public void modifyTitle(Todo title) {
-    todoRepository.save(title);
+  public void modifyTitle(Todo todo) {
+    todoRepository.save(todo);
   }
 
   @Override

@@ -2,11 +2,12 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css" integrity="sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy" crossorigin="anonymous"/>
     <title>List of Todos</title>
 </head>
 <body>
 <h1>Todos for today:</h1>
-<a href="localhost:8080/todo/add">Add new todo</a>
+<a href="/todo/add">Add new todo</a>
 <table border="1">
     <tr>
         <th>ID</th>
@@ -15,7 +16,7 @@
         <th>URGENT</th>
     </tr>
     <tr th:each="todos : ${listOfTodos}" align="center">
-        <td th:text="${todosStat.count}"></td>
+        <td th:text="${todos.id}"></td>
         <td th:text="${todos.title}"></td>
         <td>
             <span th:if="${todos.isDone()} == true" th:text="true"/>
@@ -24,6 +25,18 @@
         <td>
             <span th:if="${todos.isUrgent()} == true" th:text="true"/>
             <span th:unless="${todos.isUrgent()} == true" th:text="false" />
+        </td>
+        <form action="#" th:action="@{/todo/}" method="post"
+              th:object="${todos}">
+            <td>
+                <button class="btn btn-danger" type="submit" name="delete"
+                        th:value="${todos.id}">Delete</button>
+            </td>
+        </form>
+        <td>
+            <form action="#" th:action="@{/todo/edit/} + *{id}" method="get" th:object="${todos}">
+                <input class="btn btn-primary" value="Edit" type="submit"/>
+            </form>
         </td>
     </tr>
 </table>

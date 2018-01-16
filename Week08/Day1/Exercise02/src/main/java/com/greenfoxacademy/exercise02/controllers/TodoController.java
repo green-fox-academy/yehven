@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -43,16 +44,37 @@ public class TodoController {
   }
 
   @PostMapping(value = "/add")
-  public ModelAndView add (Model model, @ModelAttribute Todo todo){
+  public ModelAndView addElement (Model model, @ModelAttribute Todo todo){
     todoService.save(todo);
     return new ModelAndView("redirect:/todo/");
   }
 
   @GetMapping("/add")
-  public String add(Model model){
+  public String addElement(Model model){
     Todo todo = new Todo();
     model.addAttribute("todo", todo);
     return "add";
+  }
+
+  @PostMapping(value = "/", params = {"delete"})
+  public String deleteTodo(final HttpServletRequest request) {
+    final Integer todoId = Integer.valueOf(request.getParameter("delete"));
+    todoService.delete(todoId);
+    return "redirect:/todo/";
+  }
+
+  @GetMapping(value = "/edit/{todoId}")
+  public String showEditForm(@PathVariable(name = "todoId") int todoId, Model model) {
+    Todo todo = todoService.getTodo(todoId);
+    model.addAttribute("todo", todo);
+    return "edit";
+  }
+
+  @PostMapping("/edit/{todoId}")
+  public String editTodo(@PathVariable int todoId, @ModelAttribute Todo todo) {
+    todo.setId(todoId);
+    todoService.modifyTitle(todo);
+    return "redirect:/todo/";
   }
 
 }
