@@ -6,8 +6,26 @@
 </head>
 <body>
 <h1>Todos for today:</h1>
-<ul>
-    <li th:each="todos : ${listOfTodos}" th:text="${todos.title}"></li>
-</ul>
+<a href="localhost:8080/todo/add">Add new todo</a>
+<table border="1">
+    <tr>
+        <th>ID</th>
+        <th>ACTION</th>
+        <th>DONE</th>
+        <th>URGENT</th>
+    </tr>
+    <tr th:each="todos : ${listOfTodos}" align="center">
+        <td th:text="${todosStat.count}"></td>
+        <td th:text="${todos.title}"></td>
+        <td>
+            <span th:if="${todos.isDone()} == true" th:text="true"/>
+            <span th:unless="${todos.isDone()} == true" th:text="false" />
+        </td>
+        <td>
+            <span th:if="${todos.isUrgent()} == true" th:text="true"/>
+            <span th:unless="${todos.isUrgent()} == true" th:text="false" />
+        </td>
+    </tr>
+</table>
 </body>
 </html>

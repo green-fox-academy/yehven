@@ -16,6 +16,8 @@ public class Todo {
   private boolean isDone;
 
   public Todo() {
+    this.isDone = false;
+    this.isUrgent = false;
   }
 
   public Todo(String title) {
@@ -25,8 +27,8 @@ public class Todo {
   public Todo(int id, String title, boolean isUrgent, boolean isDone) {
     this.id = id;
     this.title = title;
-    this.isUrgent = false;
-    this.isDone = false;
+    this.isUrgent = isUrgent;
+    this.isDone = isDone;
   }
 
   public int getId() {
