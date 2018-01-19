@@ -11,7 +11,7 @@
 <body>
 <div align="center">
     <h1>ADD NEW TODO</h1>
-    <form action="#" th:action="@{/todo/add}" th:object="${todo}" method="post">
+    <form action="#" th:action="@{/add}" th:object="${todo}" method="post">
         <p>Action: <input type="text" th:field="*{title}"/></p>
         <div>
             <label for="done">Is it done?</label>

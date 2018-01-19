@@ -1,11 +1,10 @@
 package com.greenfoxacademy.exercise02.models;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.List;
 
 @Entity
+@Table(name = "todo")
 public class Todo {
 
   @Id
@@ -14,6 +13,9 @@ public class Todo {
   private String title;
   private boolean urgent;
   private boolean done;
+
+  @OneToOne(fetch = FetchType.LAZY)
+  private Assignee assignee;
 
   public Todo() {
     this.done = false;
@@ -61,6 +63,14 @@ public class Todo {
 
   public void setDone(boolean done) {
     this.done = done;
+  }
+
+  public Assignee getAssignee() {
+    return assignee;
+  }
+
+  public void setAssignee(Assignee assignee) {
+    this.assignee = assignee;
   }
 }
 

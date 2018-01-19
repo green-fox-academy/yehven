@@ -11,7 +11,7 @@
 <body>
 <div align="center">
 <h1 th:text="'Edit Todo with following id: ' + ${todo.id}"></h1>
-<form action="#" th:object="${todo}" th:action="@{/todo/edit/} + ${todo.id}" method="post" >
+<form action="#" th:object="${todo}" th:action="@{/edit/} + ${todo.id}" method="post" >
     <div>
         <label for="todo_name">Title:</label>
         <input id="todo_name" type="text" th:field="*{title}"/>

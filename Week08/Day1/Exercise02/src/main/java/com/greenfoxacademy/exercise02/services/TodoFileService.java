@@ -1,10 +1,10 @@
-package com.greenfoxacademy.exercise02.services;
+/*package com.greenfoxacademy.exercise02.services;
 
 import com.greenfoxacademy.exercise02.models.Todo;
 
 import java.util.List;
 
-public class TodoFileService implements TodoService {
+public abstract class TodoFileService implements TodoService {
   @Override
   public List<Todo> getAlltodos() {
     return null;
@@ -29,5 +29,5 @@ public class TodoFileService implements TodoService {
   public void delete(int id) {
 
   }
-}
+}*/
 

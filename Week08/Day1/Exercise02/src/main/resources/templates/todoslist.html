@@ -9,49 +9,61 @@
     <title>List of Todos</title>
 </head>
 <body>
-<div class="container-fluid">
+<div class="container-fluid" align="center" style="width: 70%">
     <h1 align="center">TODOS FOR TODAY</h1>
-<div align="center">
-    <p><a href="/todo/add" th:style="'color: white;'" class="btn btn-warning btn-lg" role="button" aria-pressed="true">Add new todo</a></p>
-</div>
-<table class="table table-striped">
-    <thead>
-        <tr>
-            <th scope="col">ID</th>
-            <th scope="col">ACTION</th>
-            <th scope="col">DONE</th>
-            <th scope="col">URGENT</th>
-            <th scope="col"></th>
-            <th scope="col"></th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr th:each="todos : ${listOfTodos}">
-            <td th:text="${todos.id}"></td>
-            <td th:text="${todos.title}"></td>
-            <td>
-                <div th:if="${todos.isDone()}"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></div>
-                <div th:unless="${todos.isDone()}"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></div>
-            </td>
-            <td>
-                <div th:if="${todos.isUrgent()}"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></div>
-                <div th:unless="${todos.isUrgent()}"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></div>
-            </td>
-            <form action="#" th:action="@{/todo/}" method="post"
-                  th:object="${todos}">
+    <div align="center">
+        <p><a href="/add" th:style="'color: white;'" class="btn btn-warning btn-lg" role="button" aria-pressed="true">Add new todo</a></p>
+    </div>
+    <div align="left">
+        <form action="/search" method="get">
+            <input type="search" name="search" placeholder="Search"/>
+            <button type="submit" value="Submit">Search</button>
+        </form>
+    </div>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">ACTION</th>
+                <th scope="col">DONE</th>
+                <th scope="col">URGENT</th>
+                <th scope="col">ASSIGNEE</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="todos : ${listOfTodos}" th:object="${todos}">
+                <td th:text="${todos.id}"></td>
                 <td>
-                    <button class="btn btn-danger" type="submit" name="delete"
-                            th:value="${todos.id}">Delete</button>
+                    <div th:if="${todos.isDone()}">
+                        <del><div th:text="${todos.title}"></div></del>
+                    </div>
+                    <div th:unless="${todos.isDone()}">
+                        <div th:text="${todos.title}"></div>
+                    </div>
                 </td>
-            </form>
-            <td>
-                <form action="#" th:action="@{/todo/edit/} + *{id}" method="get" th:object="${todos}">
-                    <input class="btn btn-primary" value="Edit" type="submit"/>
-                </form>
-            </td>
-        </tr>
-    </tbody>
-</table>
+                <td>
+                    <div th:if="${todos.isDone()}"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></div>
+                    <div th:unless="${todos.isDone()}"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></div>
+                </td>
+                <td>
+                    <div th:if="${todos.isUrgent()}"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></div>
+                    <div th:unless="${todos.isUrgent()}"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></div>
+                </td>
+                <td th:text="*{assignee}"/>
+                <td>
+                    <form action="#" th:action="@{/}" method="post" th:object="${todos}">
+                        <button class="btn btn-danger" type="submit" name="delete" th:value="${todos.id}">Delete</button>
+                    </form>
+                </td>
+                <td>
+                    <form action="#" th:action="@{/edit/} + *{id}" method="get" th:object="${todos}">
+                        <input class="btn btn-primary" value="Edit" type="submit"/>
+                    </form>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <a th:href="@{/assignees}">List of assignees</a>
 </div>
 <script src="/webjars/jquery/1.11.1/jquery.min.js"></script>
 <script src="/webjars/bootstrap/3.3.7-1/js/bootstrap.min.js"></script>

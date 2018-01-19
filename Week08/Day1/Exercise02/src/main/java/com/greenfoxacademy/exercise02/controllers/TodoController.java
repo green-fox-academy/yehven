@@ -1,6 +1,8 @@
 package com.greenfoxacademy.exercise02.controllers;
 
+import com.greenfoxacademy.exercise02.models.Assignee;
 import com.greenfoxacademy.exercise02.models.Todo;
+import com.greenfoxacademy.exercise02.repositories.AssigneeRepository;
 import com.greenfoxacademy.exercise02.repositories.TodoRepository;
 import com.greenfoxacademy.exercise02.services.TodoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +18,6 @@ import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
 @Controller
-@RequestMapping("/todo")
 public class TodoController {
 
   @Autowired
@@ -24,6 +25,9 @@ public class TodoController {
 
   @Autowired
   TodoService todoService;
+
+  @Autowired
+  AssigneeRepository assigneeRepo;
 
   @GetMapping(value = {"/", "/list"})
   public String list (@RequestParam(value = "isActive", required = false) Boolean isActive, Model model){
@@ -46,21 +50,22 @@ public class TodoController {
   @PostMapping(value = "/add")
   public ModelAndView addElement (Model model, @ModelAttribute Todo todo){
     todoService.save(todo);
-    return new ModelAndView("redirect:/todo/");
+    return new ModelAndView("redirect:");
   }
 
   @GetMapping("/add")
   public String addElement(Model model){
     Todo todo = new Todo();
     model.addAttribute("todo", todo);
+    //model.addAttribute("assignees", assigneeRepo.findAll());
     return "add";
   }
 
-  @PostMapping(value = "/", params = {"delete"})
+  @PostMapping(value = "/" , params = {"delete"})
   public String deleteTodo(final HttpServletRequest request) {
     final Integer todoId = Integer.valueOf(request.getParameter("delete"));
     todoService.delete(todoId);
-    return "redirect:/todo/";
+    return "redirect:";
   }
 
   @GetMapping(value = "/edit/{todoId}")
@@ -74,7 +79,13 @@ public class TodoController {
   public String editTodo(@PathVariable int todoId, @ModelAttribute Todo todo) {
     todo.setId(todoId);
     todoService.modifyTitle(todo);
-    return "redirect:/todo/";
+    return "redirect:/";
+  }
+
+  @GetMapping("/search")
+  public String searchTitle(@RequestParam String search, Model model) {
+    model.addAttribute("listOfTodos", todoRepository.findAllByTitleContaining(search));
+    return "todoslist";
   }
 
 }
