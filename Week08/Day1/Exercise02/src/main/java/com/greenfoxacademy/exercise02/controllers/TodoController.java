@@ -57,7 +57,6 @@ public class TodoController {
   public String addElement(Model model){
     Todo todo = new Todo();
     model.addAttribute("todo", todo);
-    //model.addAttribute("assignees", assigneeRepo.findAll());
     return "add";
   }
 
