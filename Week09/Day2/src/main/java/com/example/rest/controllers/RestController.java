@@ -48,4 +48,19 @@ public class RestController {
     }
   }
 
+  @PostMapping("/arrays")
+  public Object arrayHandler(@RequestBody (required = false) ArrayResponse arrayResponse ) {
+    if (arrayResponse==null){
+      return new ErrorMessage("Please provide a number!");
+    } else if (arrayResponse.getWhat().equals("multiply") || arrayResponse.getWhat().equals("sum")){
+      ArrayResultInt arrayResultInt = new ArrayResultInt(arrayResponse.getWhat(), arrayResponse.getNumbers());
+      return arrayResultInt;
+    } else if (arrayResponse.getWhat().equals("double")){
+      ArrayResultArray arrayResultArray = new ArrayResultArray(arrayResponse.getNumbers());
+      return arrayResultArray;
+    }else {
+      return null;
+    }
+  }
+
 }
