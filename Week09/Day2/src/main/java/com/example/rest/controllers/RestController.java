@@ -1,16 +1,30 @@
 package com.example.rest.controllers;
 
 import com.example.rest.models.*;
+import com.example.rest.models.ArrayHandler.ArrayResponse;
+import com.example.rest.models.ArrayHandler.ArrayResultArray;
+import com.example.rest.models.ArrayHandler.ArrayResultInt;
+import com.example.rest.models.DoUntil.Until;
+import com.example.rest.models.DoUntil.UntilResponse;
+import com.example.rest.services.LogService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import javax.xml.stream.FactoryConfigurationError;
+import java.util.Arrays;
 
 @org.springframework.web.bind.annotation.RestController
 public class RestController {
 
+  @Autowired
+  LogService logService;
+
   @GetMapping(value = "/doubling")
   public Object doubling(@RequestParam(value="input", required = false) Integer received) {
     if (!(received==null)) {
+      Log logCreated = new Log();
+      logCreated.setEndpoint("/doubling");
+      logCreated.setData("input:" + received);
+      logService.createLog(logCreated);
       return new Doubler(received);
     } else {
       return new ErrorMessage("Please provide an input!");
@@ -25,6 +39,10 @@ public class RestController {
     } else if (title==null){
       return new ErrorMessage("Please provide a title!");
     } else {
+      Log logCreated = new Log();
+      logCreated.setEndpoint("/greeter");
+      logCreated.setData("input(Name & Title):" + name + " & " + title);
+      logService.createLog(logCreated);
       return new Greeter(name,title);
     }
   }
@@ -32,6 +50,10 @@ public class RestController {
   @GetMapping(value = "/appenda/{appendable}")
   public Object appenda(@RequestParam(value="appenda", required = false) String input,@PathVariable String appendable) {
     if (!(appendable==null)) {
+      Log logCreated = new Log();
+      logCreated.setEndpoint("/appenda/" + appendable);
+      logCreated.setData("input: " + appendable);
+      logService.createLog(logCreated);
       return new Appenda(appendable);
     } else {
       return new ErrorMessage("Please provide an input!");
@@ -43,6 +65,10 @@ public class RestController {
     if (until==null){
       return new ErrorMessage("Please provide a number!");
     } else {
+      Log logCreated = new Log();
+      logCreated.setEndpoint("/dountil/" + what);
+      logCreated.setData("input: " + until.getUntil());
+      logService.createLog(logCreated);
       UntilResponse untilResponse = new UntilResponse(what, until);
       return untilResponse;
     }
@@ -53,14 +79,27 @@ public class RestController {
     if (arrayResponse==null){
       return new ErrorMessage("Please provide a number!");
     } else if (arrayResponse.getWhat().equals("multiply") || arrayResponse.getWhat().equals("sum")){
+      Log logCreated = new Log();
+      logCreated.setEndpoint("/arrays");
+      logCreated.setData("input: " + String.valueOf(Arrays.asList(arrayResponse.getNumbers())));
+      logService.createLog(logCreated);
       ArrayResultInt arrayResultInt = new ArrayResultInt(arrayResponse.getWhat(), arrayResponse.getNumbers());
       return arrayResultInt;
     } else if (arrayResponse.getWhat().equals("double")){
+      Log logCreated = new Log();
+      logCreated.setEndpoint("/arrays");
+      logCreated.setData("input:" + String.valueOf(Arrays.asList(arrayResponse.getNumbers())));
+      logService.createLog(logCreated);
       ArrayResultArray arrayResultArray = new ArrayResultArray(arrayResponse.getNumbers());
       return arrayResultArray;
     }else {
       return null;
     }
+  }
+
+  @GetMapping("/log")
+  public Object log() {
+    return logService.getAllLogs();
   }
 
 }

@@ -1,4 +1,4 @@
-package com.example.rest.models;
+package com.example.rest.models.DoUntil;
 
 public class Until {
   private int until;

@@ -1,4 +1,4 @@
-package com.example.rest.models;
+package com.example.rest.models.ArrayHandler;
 
 public class ArrayResultArray {
   private Integer[]numbers;
