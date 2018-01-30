@@ -1,6 +1,6 @@
 package com.example.rest.services;
 
-import com.example.rest.models.Log;
+import com.example.rest.models.Logs.Log;
 import com.example.rest.repositories.RestRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

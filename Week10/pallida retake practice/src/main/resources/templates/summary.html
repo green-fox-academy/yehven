@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"/>
+    <meta charset="UTF-8"/>
+    <title>Green Fox Fashion Web Store</title>
+</head>
+<body>
+<h1 class="text-center">Green Fox Fashion Web Store</h1>
+<h1 class="text-center">Summary</h1>
+<div class="container-fluid">
+    <table class="table table-striped">
+        <tr>
+            <th>Item Name</th>
+            <th>Manufacturer</th>
+            <th>Category</th>
+            <th>Quantity</th>
+            <th>Sub-total price</th>
+        </tr>
+        <tr th:object="${listOfItem}">
+            <td th:text="*{itemName}"/>
+            <td th:text="*{manufacturer}"/>
+            <td th:text="*{category}"/>
+            <td th:text="*{inStore}"/>
+            <td th:text="${totalPrice}"/>
+        </tr>
+    </table>
+    <a href="/shoppingplanner">Back to main</a>
+</div>
+</body>
+</html>

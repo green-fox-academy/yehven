@@ -1,12 +1,12 @@
 package com.example.rest.services;
 
-import com.example.rest.models.Log;
+import com.example.rest.models.Logs.Log;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-public interface LogService {
+public interface  LogService {
   List<Log> getAllLogs();
   Log getLog(Long id);
   void createLog(Log log);

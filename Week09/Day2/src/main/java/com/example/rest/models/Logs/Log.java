@@ -1,4 +1,4 @@
-package com.example.rest.models;
+package com.example.rest.models.Logs;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

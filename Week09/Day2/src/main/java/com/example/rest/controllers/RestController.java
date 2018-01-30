@@ -6,6 +6,8 @@ import com.example.rest.models.ArrayHandler.ArrayResultArray;
 import com.example.rest.models.ArrayHandler.ArrayResultInt;
 import com.example.rest.models.DoUntil.Until;
 import com.example.rest.models.DoUntil.UntilResponse;
+import com.example.rest.models.Logs.Log;
+import com.example.rest.models.Logs.LogResult;
 import com.example.rest.services.LogService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -81,14 +83,14 @@ public class RestController {
     } else if (arrayResponse.getWhat().equals("multiply") || arrayResponse.getWhat().equals("sum")){
       Log logCreated = new Log();
       logCreated.setEndpoint("/arrays");
-      logCreated.setData("input: " + String.valueOf(Arrays.asList(arrayResponse.getNumbers())));
+      logCreated.setData("input: " + arrayResponse.getWhat() + String.valueOf(Arrays.asList(arrayResponse.getNumbers())));
       logService.createLog(logCreated);
       ArrayResultInt arrayResultInt = new ArrayResultInt(arrayResponse.getWhat(), arrayResponse.getNumbers());
       return arrayResultInt;
     } else if (arrayResponse.getWhat().equals("double")){
       Log logCreated = new Log();
       logCreated.setEndpoint("/arrays");
-      logCreated.setData("input:" + String.valueOf(Arrays.asList(arrayResponse.getNumbers())));
+      logCreated.setData("input:" + arrayResponse.getWhat() + String.valueOf(Arrays.asList(arrayResponse.getNumbers())));
       logService.createLog(logCreated);
       ArrayResultArray arrayResultArray = new ArrayResultArray(arrayResponse.getNumbers());
       return arrayResultArray;
@@ -99,7 +101,21 @@ public class RestController {
 
   @GetMapping("/log")
   public Object log() {
-    return logService.getAllLogs();
+    Log logCreated = new Log();
+    logCreated.setEndpoint("/log");
+    logCreated.setData("input: no input");
+    logService.createLog(logCreated);
+    LogResult logOutput = new LogResult(logService.getAllLogs(), logService.getAllLogs().size());
+    return logOutput;
+  }
+
+  @PostMapping("/sith")
+  public Object postSith(@RequestBody (required = false) TextInput text) {
+    if (text == null) {
+      return new ErrorMessage("Feed me some text you have to, padawan young you are. Hmmm.");
+    }else {
+      return new Text(text.getText());
+    }
   }
 
 }

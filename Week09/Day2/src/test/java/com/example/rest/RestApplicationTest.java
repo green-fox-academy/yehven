@@ -21,7 +21,9 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 import java.io.IOException;
 import java.nio.charset.Charset;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertNotNull;
@@ -209,7 +211,7 @@ public class RestApplicationTest {
 
   @Test
   public void arrayHandlerDoubleInputProvided() throws Exception {
-    //Integer[] testArray = new Integer[] {2,4,10,20};
+    List<Integer> testArray = new ArrayList<>(Arrays.asList(2,4,10,20));
 
     mockMvc.perform(post("/arrays")
             .contentType(MediaType.APPLICATION_JSON)
@@ -217,6 +219,36 @@ public class RestApplicationTest {
             )
             .andExpect(status().isOk())
             .andExpect(content().contentType("application/json;charset=UTF-8"))
-            .andExpect(jsonPath("$.numbers", is( "<[2,4,10,20]>")));
+            .andExpect(jsonPath("$.numbers", is( testArray)));
+  }
+
+  @Test
+  public void logTestCreatedAt() throws Exception {
+    mockMvc.perform(get("/log")
+            .contentType(MediaType.APPLICATION_JSON))
+            .andExpect(status().isOk()
+            )
+            .andExpect(content().contentType(contentType))
+            .andExpect(jsonPath("$.entries[2].createdAt", is("2018-01-24T17:32:51.532")));
+  }
+
+  @Test
+  public void logTestData() throws Exception {
+    mockMvc.perform(get("/log")
+            .contentType(MediaType.APPLICATION_JSON))
+            .andExpect(status().isOk()
+            )
+            .andExpect(content().contentType(contentType))
+            .andExpect(jsonPath("$.entries[2].data", is("input(Name & Title):Ádika & student")));
+  }
+
+  @Test
+  public void logTestEndpoint() throws Exception {
+    mockMvc.perform(get("/log")
+            .contentType(MediaType.APPLICATION_JSON))
+            .andExpect(status().isOk()
+            )
+            .andExpect(content().contentType(contentType))
+            .andExpect(jsonPath("$.entries[2].endpoint", is("/greeter")));
   }
 }
