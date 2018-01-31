@@ -5,10 +5,7 @@ import com.greenfox.practice.services.ItemsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,7 +14,8 @@ import java.util.List;
 public class ItemsWebController {
   @Autowired
   ItemsService itemsService;
-
+  String answerToQuestion = "Abstract class can not be instantiated directly but can be extended by other class";
+  
   @GetMapping ("/shoppingplanner")
   public String listAllItems (Model model){
     model.addAttribute("listOfItems", itemsService.listAllItems());

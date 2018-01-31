@@ -19,6 +19,15 @@ public class Items {
   public Items() {
   }
 
+  public Items(String itemName, String manufacturer, String category, String size, int unitPrice, int inStore) {
+    this.itemName = itemName;
+    this.manufacturer = manufacturer;
+    this.category = category;
+    this.size = size;
+    this.unitPrice = unitPrice;
+    this.inStore = inStore;
+  }
+
   public String getItemName() {
     return itemName;
   }
