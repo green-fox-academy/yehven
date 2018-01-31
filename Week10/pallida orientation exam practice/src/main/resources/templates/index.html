@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"/>
+    <meta charset="UTF-8"/>
+    <title>Licence Plates Finder</title>
+</head>
+<body>
+<h1 class="text-center">Find my Licence</h1>
+<div class="container-fluid">
+    <form action="/search" method="get">
+        <input type="search" name="q" placeholder="Search"/>
+        <button type="submit" value="Submit">Search</button>
+    </form>
+    <P th:if="${error}" th:text="${error}" />
+
+    <a class="btn btn-primary" href='/search?police=1'>Police cars only</a>
+    <a class="btn btn-primary" href='/search?diplomat=1'>Diplomats only</a>
+    <table class="table table-striped">
+        <tr>
+            <th>Licence Plate</th>
+            <th>Brand</th>
+            <th>Model</th>
+            <th>Color</th>
+            <th>Year</th>
+        </tr>
+        <tr th:each="car : ${listOfAllCars}" th:object="${car}">
+            <td th:text="*{plate}"/>
+            <td>
+                <a th:href="@{/search/} + *{carBrand}" th:text="*{carBrand}"></a>
+            </td>
+            <td th:text="*{carModel}"/>
+            <td th:text="*{color}"/>
+            <td th:text="*{year}"/>
+        </tr>
+    </table>
+    <!-- <span>
+             <a class="btn btn-primary" th:if="${pageId!=null}" th:href="@{'/?pageId={pageId}'(pageId=${pageId - 1})}">Previous Page</a>
+         </span>
+     <span>
+             <a class="btn btn-primary" th:if="${pageId!=null}" th:href="@{'/?pageId={pageId}'(pageId=${pageId + 1})}">Next Page</a>
+         </span>
+     <p class="bg-danger" th:if="${errorMessage}" th:text="${errorMessage}"/>-->
+</div>
+</body>
+</html>

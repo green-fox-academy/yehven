@@ -15,7 +15,7 @@ public class ItemsWebController {
   @Autowired
   ItemsService itemsService;
   String answerToQuestion = "Abstract class can not be instantiated directly but can be extended by other class";
-  
+
   @GetMapping ("/shoppingplanner")
   public String listAllItems (Model model){
     model.addAttribute("listOfItems", itemsService.listAllItems());
